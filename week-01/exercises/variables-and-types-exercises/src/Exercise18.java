@@ -7,6 +7,7 @@ public class Exercise18 {
         boolean isShiny = true;
 
         // 1. Print the variable values above with String labels. Use concatenation.
+        System.out.println("Gem Count: " + gemCount + " " + "Velocity: " + velocity + " " + "Is Shiny: " + isShiny);
 
         // Expected Output:
         // Gem Count: 12
