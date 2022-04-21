@@ -22,5 +22,6 @@ public class Exercise16 {
         // (2X2)
         // **
         // **
+        //
     }
 }

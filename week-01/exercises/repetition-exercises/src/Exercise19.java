@@ -4,6 +4,7 @@ public class Exercise19 {
     public static void main(String[] args) {
         // INTERLEAVE
         Scanner console = new Scanner(System.in);
+        //
 
         System.out.print("First string: ");
         String first = console.nextLine();

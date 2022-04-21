@@ -5,6 +5,7 @@ public class Exercise18 {
     public static void main(String[] args) {
         // CUT THE MIDDLE
         Scanner console = new Scanner(System.in);
+        //
 
         System.out.print("Phrase: ");
         String phrase = console.nextLine();

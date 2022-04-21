@@ -11,5 +11,10 @@ public class Exercise02 {
         // 8
         // 10
         // 12
+        int index = 0;
+        while (index <= 12) {
+            System.out.println(index);
+            index += 2;
+        }
     }
 }

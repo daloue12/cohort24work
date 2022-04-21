@@ -18,6 +18,6 @@ public class Exercise07 {
             result += phrase.charAt(i);
         }
 
-        System.out.println("Your phrase without whitespace is: " + result);
+        System.out.println("Your phrase without whitespace is: " + result.replaceAll(" ", ""));
     }
 }

@@ -9,6 +9,15 @@ public class Exercise13 {
         System.out.print("Enter a word: ");
         String phrase = console.nextLine();
 
+        String newPhrase = "";
+
+        for (int i = 0; i < phrase.length(); i++) {
+            if (newPhrase.length() < phrase.length()) {
+                newPhrase += phrase.charAt(i);
+            }
+        }
+
+
         // 1. Write a loop that "doubles" each character in a user-entered word.
         // You'll need a new string variable to store the result.
         // 2. Print the result.

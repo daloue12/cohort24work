@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Exercise10 {
@@ -10,6 +11,12 @@ public class Exercise10 {
 
         System.out.print("End: ");
         int end = Integer.parseInt(console.nextLine());
+
+        int sum = start;
+        for (int i = start; i <= end; i++) {
+            sum = sum + i;
+        }
+        System.out.println(sum);
 
         // 1. Write a loop to sum all numbers between start and end.
         // 2. Print the result.
