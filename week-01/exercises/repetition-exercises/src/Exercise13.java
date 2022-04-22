@@ -13,8 +13,9 @@ public class Exercise13 {
 
         for (int i = 0; i < phrase.length(); i++) {
             if (newPhrase.length() < phrase.length()) {
-                newPhrase += phrase.charAt(i);
+                newPhrase = phrase.replaceAll(".","$0$0");
             }
+            System.out.println(newPhrase);
         }
 
 
