@@ -4,6 +4,8 @@ public class Exercise13 {
 
     public static void main(String[] args) {
         String[] statesOrTowns = makeRandomStateAndTownArray();
+        int[] countTowns;
+        for
 
         // The statesOrTowns array contains either state abbreviations or town names. You can distinguish state
         // abbreviations by their length. They're always two characters.
