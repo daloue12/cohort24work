@@ -25,19 +25,20 @@ High Level Overview
 **(Main Method)**
 
 1. Prompt of welcome message in addition to user prompt to enter in # of capsules for the hotel which will be stored in array
-2. Create do/while loop until exit = true with a switch condition on methods
-3. Goodbye ("verfication") message upon loop exit
+2. create boolean to initialize that exit = false 
+3. Create do/while loop until exit = true with a switch condition for methods
+4. Print the goodbye ("verfication") message upon loop exit
 
 **(Guest Menu)**
 
-* List all menu options for the game (check in, check out, view guests, exit (possibly additional options if time permitting)
+* List all menu options for the game (check in, check out, view guests, exit (possibly additional creative implementations if time permits)
 * Guest menu options will be selectable via switch and corresponding numbers for each option
 
 **(Check In Method)**
 
 1. Prompt for guest name and store guest name
 2. Prompt for capsule # and store in array
-3. Validate that it is a valid capsule using conditional statement
+3. Validate that input value is a valid open capsule using conditional statement
 4. Validate that the capsule is currently empty using conditional statement
 5. If valid, store guest name in array 
 
