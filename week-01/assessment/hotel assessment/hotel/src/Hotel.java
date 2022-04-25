@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 import javax.print.DocFlavor;
 import java.lang.reflect.Array;
 import java.sql.SQLOutput;
@@ -26,6 +28,7 @@ public class Hotel {
                     checkOut(console, grabIndex(console, capsules), capsules);
                     break;
                 case 3:
+                    viewGuests(capsules);
                     break;
                 case 4:
                     System.out.println("Are you sure that you want to exit?");
@@ -48,10 +51,11 @@ public class Hotel {
 
     //The curly bracket above closes the main method. User menu code to follow this comment line.
     private static int menu(Scanner console) {
+        System.out.println();
         System.out.println("What would you like to do?");
-        System.out.println("1. Check guest in");
-        System.out.println("2. Check guest out");
-        System.out.println("3. View guests");
+        System.out.println("1. Check Guest In");
+        System.out.println("2. Check Guest Out");
+        System.out.println("3. View Guests");
         System.out.println("4. Exit");
         System.out.print("Selection: ");
         int userOption = console.nextInt();
@@ -62,21 +66,18 @@ public class Hotel {
     //Check in method follows this comment
     private static void checkIn(Scanner console, String[] array) {
         console.nextLine();
-        for (int i = 0; i < array.length; i ++) {
+        for (int i = 0; i < array.length; i++) {
             System.out.println();
             System.out.println("Enter guest name: ");
             String guestName = console.nextLine();
             if (array[i] == null) {
                 array[i] = guestName;
-                System.out.printf("%s is checked now checked into capsule %s", guestName, i +1);
+                System.out.printf("%s is checked now checked into capsule %s", guestName, (i + 1));
                 System.out.println();
-            } else if (array[i] != null) {
-                System.out.println("Sorry, there are no capsules available at this time!");
-                break;
+            } else if (array[i] != null && !array[i].isBlank()) {
+                System.out.println("Sorry, there are no open capsules available at this time!");
             }
-            }
-        System.out.println("Looks like we have a full house. You have successfully checked all guests in.");
-        System.out.println();
+        }
     }
 
     private static int grabIndex(Scanner console, String[] array) {
@@ -84,10 +85,12 @@ public class Hotel {
         System.out.println("Who would you like to check out?");
         console.nextLine();
         String update = console.nextLine();
-        for (int i = 0; i < array.length; i ++){
+        for (int i = 0; i < array.length; i++) {
             if (array[i].equalsIgnoreCase(update)) {
                 index = i;
                 return index;
+            } else {
+                System.out.println();
             }
         }
         System.out.println("Sorry, we cannot find that person.");
@@ -95,23 +98,24 @@ public class Hotel {
     }
 
     private static void checkOut(Scanner console, int x, String[] array) {
-        System.out.println();
         System.out.println("Enter new guest name: ");
+        System.out.println();
         String newName = console.nextLine();
 
         array[x] = newName;
     }
-    private static void viewGuests(String[] capsules) {
-        if (capsules[0] == null) {
+    private static void viewGuests(String[] array) {
+        if (array[0] == null) {
             System.out.println("All capsules are currently vacant. Nobody has checked in yet.");
         }else{
             System.out.println("Current Guests: ");
-
-            for (int i = 0; i < capsules.length; i++) {
-                String currentGuest = capsules[i];
-                System.out.printf("%s", !currentGuest.isBlank() ? currentGuest : "empty");
+            System.out.println();
+            for (int i = 0; i < array.length; i++) {
+                String currentGuest = array[i];
+                int assignment = i + 1;
+                System.out.printf("%s is in capsule %s.%n", !currentGuest.isBlank() ? currentGuest : "Empty", assignment);
+                }
             }
         }
-    }
 
 }
