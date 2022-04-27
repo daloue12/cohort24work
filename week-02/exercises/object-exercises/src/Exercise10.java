@@ -16,14 +16,14 @@ public class Exercise10 {
 
             System.out.println("Inflate? [y/n]: ");
             if (console.nextLine().equalsIgnoreCase("y")) {
-                // 2. If the user confirms an  inflate, inflate each balloon.
+                // 2. If the user confirms an inflate, inflate each balloon.
                 mine.inflate();
                 his.inflate();
                 doggy.inflate();
             }
 
             // 3. When one or more balloons explode, stop the loop.
-        } while (false);
+        } while (!mine.isExploded() && !his.isExploded() && !doggy.isExploded());
 
         // 4. Print the color of the winners (balloons that exploded).
         System.out.printf("%s%n", mine.getPsi());

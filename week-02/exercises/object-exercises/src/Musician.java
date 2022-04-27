@@ -20,6 +20,7 @@ public class Musician {
     public String getName() {
         return name;
     }
+
     public int getRating() {
         return rating;
     }

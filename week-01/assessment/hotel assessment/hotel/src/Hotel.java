@@ -20,7 +20,7 @@ public class Hotel {
                     checkIn(console, capsules);
                     break;
                 case 2:
-                    grabIndex(console, capsules);
+                    checkOut(console, capsules);
                     break;
                 case 3:
                     viewGuests(console, capsules);
@@ -61,41 +61,52 @@ public class Hotel {
     //Check in method follows this comment
     private static void checkIn(Scanner console, String[] array) {
         System.out.println("Which capsule would you like to check into?");
-        int capsuleNumber = console.nextInt();
+        int capsuleNumber = console.nextInt() - 1;
         if (capsuleNumber > 0 && capsuleNumber < array.length) {
             console.nextLine();
             if (array[capsuleNumber] == null) {
                 System.out.println("Enter guest name: ");
                 String guestName = console.nextLine();
                 array[capsuleNumber] = guestName;
+                System.out.println("Check in complete!");
             } else if (array[capsuleNumber] != null) {
-                System.out.println("Sorry, that capsule is not vacant at this time.");
+                System.out.println("Sorry, that capsule is not available at this time.");
             }
         } else {
             System.out.println("Sorry, that is not a valid capsule number that exists.");
         }
-        System.out.println("Check in complete!");
     }
 
-    private static void grabIndex(Scanner console, String[] array) {
+    private static void checkOut(Scanner console, String[] array) {
         System.out.println("Which room would you like to check out?");
         console.nextLine();
-        int update = console.nextInt();
+        int update = console.nextInt() - 1;
         if (array[update] == null) {
             System.out.println("That capsule is currently vacant. Please try again.");
             System.out.println();
         } else if (array[update] != null) {
-            System.out.printf("Success. Capsule %s is now vacant", update);
+            System.out.printf("Success. Capsule %s is now vacant", update + 1);
+            System.out.println();
             array[update] = null;
         }
     }
+
     private static void viewGuests(Scanner console, String[] array) {
+        console.nextLine();
         System.out.println("Enter a room number:");
-        int checkRoom = console.nextInt();
-        String currentGuest;
-        for (int i = (checkRoom - 5); i < array.length && i <= checkRoom; i++) {
-            currentGuest = array[checkRoom];
-            System.out.printf("%s%n", currentGuest.isBlank() ? currentGuest : "Empty");
+        int guestOption = console.nextInt() - 1;
+        if (guestOption - 5 < 0) {
+            for (int i = 0; i <= guestOption + 5; i++) {
+                System.out.println(array[i]);
             }
+        }else if (guestOption + 5 > array.length) {
+            for (int i = guestOption - 5; i < array.length; i ++) {
+                System.out.println(array[i]);
+            }
+        } else {
+            for (int i = guestOption - 5; i < guestOption + 5; i ++) {
+                System.out.println(array[i]);
+            }
+        }
     }
 }

@@ -15,12 +15,16 @@ public class Exercise05 {
         for (int i = 0; i < musicians.length; i++) {
             Musician first = new Musician();
             System.out.println("Enter musician name: ");
-            first.setName(console.nextLine());
+            String name = console.nextLine();
             System.out.println("Musician rating: ");
             int rating = Integer.parseInt(console.next());
-            first.setRating(rating);
-            System.out.printf("%s, %s%n", first.getName(), first.getRating());
+            Musician m = new Musician(name, rating);
+            System.out.printf("%s, %s%n", m.getName(), m.getRating());
             }
+
+        for (int i = 0; i < musicians.length; i ++) {
+            System.out.printf("#%s, %s: %s%n", i+1, musicians[i].getName(), musicians[i].getRating());
+        }
 
         // 2. Use a second loop to print details about each musician.
     }
