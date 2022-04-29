@@ -7,9 +7,15 @@ public class Exercise03 {
 
     // 1. Create a method to print all Vehicles in a HashMap<String, Vehicle>.
     // Consider making it `public` so you can use it in other exercises.
+    public static void printAll(HashMap<String, Vehicle> vehicleMap) {
+        HashMap<String, Vehicle> vehicles = vehicleMap.getAll();
+
+
+    }
 
     public static void main(String[] args) {
         HashMap<String, Vehicle> vehicleMap = VehicleRepository.getMap();
+        printAll(vehicleMap);
 
         // 2. Print `vehicleMap` using your "print all" method.
     }

@@ -23,8 +23,26 @@ public class Exercise04 {
      * @return the total cost with volume discounts applied
      */
     public double calculateTotalCost(double price, int quantity) {
-
-
-        return 0.0;
+        double actualPrice = price;
+        if (quantity <= 0 || price < 0) {
+            actualPrice = 0.00;
+            return actualPrice;
+        } else if (quantity >= 1 && quantity <= 15) {
+            actualPrice = quantity * price;
+            return actualPrice;
+        } else if (quantity > 15 && quantity <= 25) {
+            actualPrice = (quantity * price) - ((quantity * price) * 0.05);
+            return actualPrice;
+        } else if (quantity > 25 && quantity <= 50) {
+            actualPrice = (quantity * price) - ((quantity * price) * .10);
+            return actualPrice;
+        } else if (quantity > 50 && quantity <= 75) {
+            actualPrice = (quantity * price) - ((quantity * price) * .15);
+            return actualPrice;
+        } else if (quantity > 75) {
+            actualPrice = (quantity * price) - ((quantity * price) *.22);
+            return actualPrice;
+        }
+        return actualPrice;
     }
 }

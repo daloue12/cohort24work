@@ -1,3 +1,5 @@
+import java.util.Locale;
+
 public class Exercise03 {
 
     // 1. Read the hasAllVowels JavaDocs.
@@ -16,10 +18,10 @@ public class Exercise03 {
         if (value == null) {
             return false;
         }
-        for (int c = 0; c < value.length(); c ++) {
-             if (c == 'a' || c == 'e' || c == 'o' || c == 'i' || c == 'u') {
-                return true;
-            }
+        value = value.toLowerCase();
+
+        if (value.contains("a") && value.contains("e") && value.contains("i") && value.contains("o") && value.contains("u")) {
+            return true;
         }
         return false;
     }
