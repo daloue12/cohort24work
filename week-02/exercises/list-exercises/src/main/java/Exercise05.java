@@ -12,7 +12,7 @@ public class Exercise05 {
 
         // 1. Loop over each BoardGame in `games` and print games with the "Adventure" category.
         for (BoardGame allAdventure : games) {
-            if (allAdventure.getCategory() == "Adventure") {
+            if (allAdventure.getCategory().equalsIgnoreCase("Adventure")) {
                 System.out.println(allAdventure);
             }
         }
