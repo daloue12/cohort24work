@@ -5,12 +5,61 @@ import learn.gomoku.game.Result;
 import learn.gomoku.game.Stone;
 import learn.gomoku.players.HumanPlayer;
 import learn.gomoku.players.Player;
+import learn.gomoku.players.RandomPlayer;
+
+import java.util.Random;
+import java.util.Scanner;
 
 public class GameController {
     public void run() {
-        HumanPlayer playerOne = new HumanPlayer("Dori");
-        HumanPlayer playerTwo = new HumanPlayer("Nemo");
-        Gomoku game = new Gomoku(playerOne, playerTwo);
+        Scanner console = new Scanner(System.in);
+        Player firstPlayer = null;
+        Player secondPlayer = null;
+        boolean onePlayerEstablished = false;
+        boolean twoPlayersEstablished = false;
+
+        System.out.println("Welcome to the Gomoku Game!");
+        do {
+            System.out.println("Do you want to play as a human player or a random player? [human/random]");
+            String userChoice = console.nextLine();
+            if (userChoice.equalsIgnoreCase("human")) {
+                System.out.println("Please enter a player's name: ");
+                String humanPlayerName = console.nextLine();
+                firstPlayer = new HumanPlayer(humanPlayerName);
+                onePlayerEstablished = true;
+            } else if (userChoice.equalsIgnoreCase("random")) {
+                firstPlayer = new RandomPlayer();
+                onePlayerEstablished = true;
+            } else {
+                System.out.println("Sorry, that is not a valid entry");
+                onePlayerEstablished = false;
+            }
+        } while (onePlayerEstablished == false);
+
+        do {
+            System.out.println("For player two, do you want to play as a human player or a random player? [human/random]");
+            String userSecondChoice = console.nextLine();
+            if (userSecondChoice.equalsIgnoreCase("human")) {
+                System.out.println("Please enter a player's name: ");
+                String humanPlayerName = console.nextLine();
+                secondPlayer = new HumanPlayer(humanPlayerName);
+                twoPlayersEstablished = true;
+            } else if (userSecondChoice.equalsIgnoreCase("random")) {
+                secondPlayer = new RandomPlayer();
+                twoPlayersEstablished = true;
+            } else {
+                System.out.println("Sorry, that is not a valid entry");
+                twoPlayersEstablished = false;
+            }
+        } while (twoPlayersEstablished == false);
+
+       /* Gomoku game = new Gomoku(firstPlayer, secondPlayer);
+
+
+        do {
+
+
+        } while (!game.isOver());
         Player black = game.getCurrent();
 
         // Black player's first move.
@@ -45,6 +94,5 @@ public class GameController {
         System.out.println("Game is over? " + game.isOver());
         System.out.println(game.getWinner());
 
-
-    }
+*/    }
 }
