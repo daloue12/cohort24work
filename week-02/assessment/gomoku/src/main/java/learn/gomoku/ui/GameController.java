@@ -23,52 +23,31 @@ public class GameController {
         playAgain();
     }
 
-    private void setup() {
-        Player firstPlayer = null;
-        Player secondPlayer = null;
-        boolean onePlayerEstablished = false;
-        boolean twoPlayersEstablished = false;
-
+    void setup() {
         System.out.println("Welcome to the Gomoku Game!");
-        do {
-            System.out.println("Do you want to play as a human player or a random player? [human/random]");
-            String userChoice = console.nextLine();
-            if (userChoice.equalsIgnoreCase("human")) {
-                System.out.println("Please enter a player's name: ");
-                String humanPlayerName = console.nextLine();
-                firstPlayer = new HumanPlayer(humanPlayerName);
-                onePlayerEstablished = true;
-            } else if (userChoice.equalsIgnoreCase("random")) {
-                firstPlayer = new RandomPlayer();
-                onePlayerEstablished = true;
-            } else {
-                System.out.println("Sorry, that is not a valid entry");
-                onePlayerEstablished = false;
-            }
-        } while (onePlayerEstablished == false);
-
-        do {
-            System.out.println("For player two, do you want to play as a human player or a random player? [human/random]");
-            String userSecondChoice = console.nextLine();
-            if (userSecondChoice.equalsIgnoreCase("human")) {
-                System.out.println("Please enter a player's name: ");
-                String humanPlayerName = console.nextLine();
-                secondPlayer = new HumanPlayer(humanPlayerName);
-                twoPlayersEstablished = true;
-            } else if (userSecondChoice.equalsIgnoreCase("random")) {
-                secondPlayer = new RandomPlayer();
-                twoPlayersEstablished = true;
-            } else {
-                System.out.println("Sorry, that is not a valid entry");
-                twoPlayersEstablished = false;
-            }
-        } while (twoPlayersEstablished == false);
-
+        Player playerOne = getPlayer(1);
+        System.out.println();
+        Player playerTwo = getPlayer(2);
+        game = new Gomoku(playerOne, playerTwo);
         System.out.println("Randomizing...");
-        game = new Gomoku(firstPlayer, secondPlayer);
         System.out.println();
         System.out.printf("It is %s's turn!", game.getCurrent().getName());
         System.out.println();
+    }
+
+    Player getPlayer(int playerNumber) {
+        int choice;
+        Player player = null;
+        choice = readInt("Would you like to be a human player or random player? [1 = human, 2 = random]", 1, 2);
+        if (choice == 1) {
+            String playerName = readRequiredString("Enter your name: ");
+            player = new HumanPlayer(playerName);
+            return player;
+        } else if (choice == 2) {
+            player = new RandomPlayer();
+            return player;
+        }
+        return player;
     }
 
       /*  do {
@@ -96,22 +75,38 @@ public class GameController {
             System.out.println();
             Player currentPlayer = this.game.getCurrent();
             System.out.println(currentPlayer.getName() + " it's your turn.");
+            System.out.println();
             Stone stone = currentPlayer.generateMove(this.game.getStones());
 
-            int row = intSelectionRow() - 1;
-            int column = intSelectionColumn() - 1;
-
             if (stone == null) {
+                System.out.println("Enter row: ");
+                int row = Integer.parseInt(console.nextLine()) - 1;
+                System.out.println();
+
+                System.out.println("Enter column: ");
+                int column = Integer.parseInt(console.nextLine()) - 1;
+                System.out.println();
                 stone = new Stone(row, column, this.game.isBlacksTurn());
                 this.game.place(stone);
             } else {
                 this.board[stone.getRow()][stone.getColumn()] = stone.isBlack() ? 'X' : 'O';
             }
-            if (game.getWinner() == null) {
-                System.out.println("The game is over. It's a draw!");
+            Result result = game.place(stone);
+
+            if (!result.isSuccess()) {
+                System.out.println(result.getMessage());
+            } else {
+                System.out.printf("Stone placed in row: %s column: %s", stone.getRow(), stone.getColumn());
+                System.out.println();
+                printBoard();
             }
+            /*this.board[stone.getRow()][stone.getColumn()] = stone.isBlack() ? 'X' : 'O';*/
         } while (!this.game.isOver());
-        System.out.printf("The game is over! The winner is %s", game.getWinner().getName());
+        if (game.getWinner() == null) {
+            System.out.println("The game is over. It's a draw!");
+        } else {
+            System.out.printf("The winner is %s", game.getWinner().getName());
+        }
     }
 
     private void printBoard() {
@@ -144,20 +139,22 @@ public class GameController {
     private String readRequiredString(String message) {
         String input;
         do {
-            input = console.nextLine().trim();
+            System.out.print(message);
+            input = console.nextLine();
         } while (input.isBlank());
         return input;
     }
 
-    private int readInt(String message, int min, int max) {
-        System.out.println(message);
+    int readInt(String message, int min, int max) {
         String userInput = readRequiredString(message);
+
         if (userInput.equals("1")) {
             return 1;
         } else if (userInput.equals("2")) {
             return 2;
         } else {
             System.out.println("Sorry, that is not a valid entry");
+            readInt(message, min, max);
         }
         return 0;
     }
@@ -165,7 +162,9 @@ public class GameController {
     private boolean playAgain() {
         System.out.println();
         choice = readInt("Do you want to play again? [1 = yes | 2 = no]", 1, 2);
+
         if (choice == 1) {
+            run();
             return true;
         } else if (choice == 2) {
             return false;
@@ -174,8 +173,9 @@ public class GameController {
             return false;
         }
     }
+}
 
-    private int intSelectionRow() {
+/*  private int intSelectionRow() {
         boolean validInput = false;
         do {
             System.out.println("Pick a row [1-15]");
@@ -201,8 +201,7 @@ public class GameController {
             }
         } while (validInput);
         return 0;
-    }
-}
+    }*/
 
 
 
