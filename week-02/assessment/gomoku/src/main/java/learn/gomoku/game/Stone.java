@@ -16,8 +16,7 @@ public class Stone {
         return row;
     }
 
-    public int getColumn() {
-        return column;
+    public int getColumn() {return column;
     }
 
     public boolean isBlack() {
