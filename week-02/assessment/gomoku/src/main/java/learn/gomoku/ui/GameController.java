@@ -18,9 +18,10 @@ public class GameController {
     String message;
 
     public void run() {
-        setup();
-        play();
-        playAgain();
+        do {
+            setup();
+            play();
+        } while (!!playAgain());
     }
 
     void setup() {
@@ -33,10 +34,18 @@ public class GameController {
         System.out.println();
         System.out.printf("It is %s's turn!", game.getCurrent().getName());
         System.out.println();
+        resetBoard();
     }
 
     void resetBoard() {
-        for (int row = 0, row <)
+        int row;
+        int col;
+
+        for (row = 0; row < board.length; row ++) {
+            for (col = 0; col < board[row].length; col ++) {
+                    board[row][col] = '_';
+            }
+        }
     }
 
     Player getPlayer(int playerNumber) {
@@ -53,25 +62,6 @@ public class GameController {
         }
         return player;
     }
-    //Commented code blow serves as a guide provided to us by James
-      /*  do {
-            Player currentPlayer = game.getCurrent();
-            System.out.printf("%s it's your turn!%n", currentPlayer.getName());
-
-            System.out.println("Enter row: ");
-            int row = Integer.parseInt(console.nextLine()) - 1;
-
-            System.out.println("Enter column: ");
-            int column = Integer.parseInt(console.nextLine()) - 1;
-
-            Stone stone = new Stone(row, column, game.isBlacksTurn());
-
-            Result result = game.place(stone);
-            System.out.println(result);
-        } while (!game.isOver());
-        System.out.println("Game is over? " + game.isOver());
-        System.out.println("The winner is: " + game.getWinner().getName());*/
-
     private void play() {
         do {
             System.out.println();
@@ -129,7 +119,7 @@ public class GameController {
                     board[row][column] = '_';
                 }
             }
-        }//exact topmost column alightment with the '_' characters is still not completely exact. Wonder if it's possible? Is so, how?
+        }//exact topmost column alignment with the '_' characters is still not completely exact. Wonder if it's possible? Is so, how?
         System.out.println("  01 02 03 04 05 06 07 08 09 10 11 12 13 14 15");
         for (row = 0; row < board.length; row++) {
             System.out.printf("%02d", row + 1);
@@ -178,73 +168,3 @@ public class GameController {
         }
     }
 }
-/*Code below represents a previous workaround attempt to the nextInt() method restricted
-to only 2 options*/
-
-/*  private int intSelectionRow() {
-        boolean validInput = false;
-        do {
-            System.out.println("Pick a row [1-15]");
-            int choice = console.nextInt();
-            if (choice >= 1 && choice <= 15) {
-                return choice;
-            } else {
-                System.out.println("Sorry, that is not valid.");
-            }
-        } while (validInput);
-        return 0;
-    }
-
-    private int intSelectionColumn() {
-        boolean validInput = false;
-        do {
-            System.out.println("Pick a column [1-15]");
-            int choice = console.nextInt();
-            if (choice >= 1 && choice <= 15) {
-                return choice;
-            } else {
-                System.out.println("Sorry, that is not valid.");
-            }
-        } while (validInput);
-        return 0;
-    }*/
-
-
-
-
-       /*
-        Player black = game.getCurrent();
-
-        // Black player's first move.
-        Result result = game.place(new Stone(0, 0, game.isBlacksTurn()));
-
-        // White player's first move.
-        result = game.place(new Stone(1, 0, game.isBlacksTurn()));
-
-        // Black player's second move.
-        result = game.place(new Stone(0, 1, game.isBlacksTurn()));
-
-        // White player's second move.
-        result = game.place(new Stone(1, 1, game.isBlacksTurn()));
-
-        // Black player's third move.
-        result = game.place(new Stone(0, 2, game.isBlacksTurn()));
-
-        // White player's third move.
-        result = game.place(new Stone(1, 2, game.isBlacksTurn()));
-
-        // Black player's fourth move.
-        result = game.place(new Stone(0, 3, game.isBlacksTurn()));
-
-        // White player's fourth move.
-        result = game.place(new Stone(1, 3, game.isBlacksTurn()));
-
-        // Black player's fifth move... the winning move of the game.
-        // Not only should the result be successful, but it should contain the expected "winning" message.
-        result = game.place(new Stone(0, 4, game.isBlacksTurn()));
-
-        // Check that the game is in fact over and that the winner was the black player.
-        System.out.println("Game is over? " + game.isOver());
-        System.out.println(game.getWinner());
-
-*/

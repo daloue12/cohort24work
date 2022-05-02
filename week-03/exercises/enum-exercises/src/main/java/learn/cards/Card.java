@@ -1,11 +1,12 @@
 package learn.cards;
+import java.util.Scanner;
 
 public class Card {
+Scanner console = new Scanner(System.in);
 
     // 1. Add a Suit and Rank field to the Card class.
     // 2. Add a constructor that accepts a Suit and Rank and sets the appropriate fields.
     // 3. Add getters for both suit and rank.
-
     public String getName() {
 
         // 4. Complete the getName method.
