@@ -35,6 +35,10 @@ public class GameController {
         System.out.println();
     }
 
+    void resetBoard() {
+        for (int row = 0, row <)
+    }
+
     Player getPlayer(int playerNumber) {
         int choice;
         Player player = null;
@@ -49,7 +53,7 @@ public class GameController {
         }
         return player;
     }
-
+    //Commented code blow serves as a guide provided to us by James
       /*  do {
             Player currentPlayer = game.getCurrent();
             System.out.printf("%s it's your turn!%n", currentPlayer.getName());
@@ -69,8 +73,8 @@ public class GameController {
         System.out.println("The winner is: " + game.getWinner().getName());*/
 
     private void play() {
-        System.out.println();
         do {
+            System.out.println();
             printBoard();
             System.out.println();
             Player currentPlayer = this.game.getCurrent();
@@ -125,7 +129,7 @@ public class GameController {
                     board[row][column] = '_';
                 }
             }
-        }
+        }//exact topmost column alightment with the '_' characters is still not completely exact. Wonder if it's possible? Is so, how?
         System.out.println("  01 02 03 04 05 06 07 08 09 10 11 12 13 14 15");
         for (row = 0; row < board.length; row++) {
             System.out.printf("%02d", row + 1);
@@ -174,6 +178,8 @@ public class GameController {
         }
     }
 }
+/*Code below represents a previous workaround attempt to the nextInt() method restricted
+to only 2 options*/
 
 /*  private int intSelectionRow() {
         boolean validInput = false;
