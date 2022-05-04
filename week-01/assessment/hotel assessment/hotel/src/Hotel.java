@@ -4,6 +4,7 @@ public class Hotel {
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
         boolean exit = false;
+        System.out.println();
         System.out.println("Welcome to America's Finest Capsule Hotel!");
         System.out.println("How many capsules are available today: ");
         int numOfCapsules = console.nextInt();

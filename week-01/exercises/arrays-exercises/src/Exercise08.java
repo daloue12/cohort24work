@@ -15,7 +15,6 @@ public class Exercise08 {
         int sum = sumArray(values);
         System.out.println(sum);
         System.out.println(sumArray(makeRandomArray()));
-        System.out.println(sumArray(makeRandomArray()));
 
     }
 
@@ -30,7 +29,7 @@ public class Exercise08 {
 
     public static int sumArray(int[] array) {
         int sum = 0;
-        for (int i = 0; i < ; i ++) {
+        for (int i = 0; i < array.length; i ++) {
             sum = sum + i;
         }
         return sum;
