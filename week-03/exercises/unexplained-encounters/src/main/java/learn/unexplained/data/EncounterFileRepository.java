@@ -116,6 +116,7 @@ public class EncounterFileRepository implements EncounterRepository {
         return null;
     }
 
+    @Override
     public boolean update(Encounter encounter) throws DataAccessException {
         List<Encounter> all = findAll();
         for (int i = 0; i < all.size(); i ++) {

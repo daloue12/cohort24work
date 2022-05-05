@@ -54,4 +54,38 @@ class EncounterFileRepositoryTest {
         assertEquals(4, actual.getEncounterId());
     }
 
+    @Test
+    void shouldFindByType() throws DataAccessException {
+        Encounter encounter = new Encounter();
+        encounter.setType(EncounterType.VOICE);
+        encounter.setWhen("May 5, 2022");
+        encounter.setDescription("Spooky voice that called to me from underneath the bed");
+        encounter.setOccurrences(1);
+        Encounter actual = repository.add(encounter);
+
+        assertNotNull(actual);
+        assertEquals(4, actual.getEncounterId());
+    }
+
+    @Test
+    void shouldUpdate() throws DataAccessException {
+        Encounter encounter = new Encounter();
+        encounter.setType(EncounterType.CREATURE);
+        encounter.setWhen("04/26/2022");
+        encounter.setDescription("Ugly pizza monster looking creature");
+        encounter.setOccurrences(1);
+        Encounter actual = repository.add(encounter);
+        repository.update(actual);
+
+        assertNotNull(actual);
+        assertEquals(4, actual.getEncounterId());
+    }
+
+    @Test
+    void shouldDeleteById() throws DataAccessException {
+         boolean deleted = repository.deleteById(2);
+         assertNotNull(deleted);
+         assertTrue(deleted);
+    }
+
 }
