@@ -4,6 +4,7 @@ import learn.unexplained.models.Encounter;
 import learn.unexplained.models.EncounterType;
 
 import java.io.*;
+import java.sql.DatabaseMetaData;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,6 +103,29 @@ public class EncounterFileRepository implements EncounterRepository {
             return encounter;
         }
         return null;
+    }
+
+    @Override
+    public List findByType(EncounterType type) throws DataAccessException {
+        List<Encounter> all = findAll();
+        for (Encounter encounter: all) {
+            if (encounter.getType() == type) {
+                return (List) encounter;
+            }
+        }
+        return null;
+    }
+
+    public boolean update(Encounter encounter) throws DataAccessException {
+        List<Encounter> all = findAll();
+        for (int i = 0; i < all.size(); i ++) {
+            if (all.get(i).getEncounterId() == encounter.getEncounterId()) {
+                all.set(i, encounter);
+                writeAll(all);
+                return true;
+            }
+        }
+        return false;
     }
 
     private String clean(String value) {
