@@ -43,7 +43,7 @@ public class PanelService {
         if (result.isSuccess()) {
             if (repository.update(panel)) {
                 result.setPanel(panel);
-                System.out.printf("Panel %s has been updated", panel.getPanelId());
+                System.out.printf("Panel %s has been updated%n", panel.getPanelId());
             } else {
                 String message = String.format("Panel 'id' %s was not found.", panel.getPanelId());
                 result.addMessages(message);

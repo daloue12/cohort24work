@@ -67,8 +67,10 @@ public class Controller {
         String userChoice = view.readSection();
         List<Panel> panels = service.findBySection(userChoice);
         view.printPanels(userChoice, panels);
-        view.choosePanel(panels);
-
+        Panel panel = view.choosePanel(panels);
+        view.update(panel);
+        PanelResult result = service.update(panel);
+        view.printResult(result);
     }
 
     private void deletePanel() throws DataException {

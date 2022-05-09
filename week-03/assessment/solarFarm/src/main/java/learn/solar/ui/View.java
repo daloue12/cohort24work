@@ -100,6 +100,39 @@ public class View {
             return false;
         }
     }
+
+    public Panel update(Panel panel) {
+        System.out.println("Current section: " + panel.getSection());
+        String newSection = readString("Enter new section: ");
+        if (newSection.trim().length() > 0) {
+            panel.setSection(newSection);
+            System.out.println();
+        }
+
+        System.out.println("Current row: " + panel.getRow());
+        int newRow = readInt("Enter new row: ", 1, 250);
+        panel.setRow(newRow);
+        System.out.println();
+
+        System.out.println("Current column: " + panel.getColumn());
+        int newColumn = readInt("Enter new column: ", 1, 250);
+        panel.setRow(newColumn);
+        System.out.println();
+
+        System.out.println("Current installation year: " + panel.getYear());
+        int newYear = readInt("Enter new installation year: ");
+        panel.setYear(newYear);
+        System.out.println();
+
+        Material newMaterial = readMaterial();
+        panel.setMaterial(newMaterial);
+        System.out.println();
+
+        boolean newBoolean = readBoolean("Tracked? [y/n]");
+        panel.setTracking(newBoolean);
+
+        return panel;
+    }
     public String readSection() {
         String userSelection = readRequiredString("Which section would you like to view?");
         return userSelection;
