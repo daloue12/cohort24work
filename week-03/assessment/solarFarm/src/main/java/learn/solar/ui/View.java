@@ -58,9 +58,18 @@ public class View {
         }
     }
 
-    /*public Panel choosePanel(String sectionName, List<Panel> panels) {
-
-    }*/
+    public Panel choosePanel(List<Panel> panels) {
+        Panel result = null;
+        if (panels.size() > 0) {
+            int panelId = readInt("Select a Panel ID");
+            for (Panel panel : panels) {
+                if (panel.getPanelId() == panelId) {
+                    return panel;
+                }
+            }
+        }
+        return null;
+    }
 
     public Panel makePanel() {
         Panel newPanel = new Panel();
@@ -90,36 +99,6 @@ public class View {
             return false;
         }
     }
-
-    public Panel update(Panel panel) {
-        printHeader("Update Panel");
-        System.out.println();
-
-        String section = readSection();
-        if (section.trim().length() > 0) {
-            panel.setSection(section);
-        }
-
-        int row = readInt("Row: ");
-        panel.setRow(row);
-
-        int column = readInt("Column: ");
-        panel.setColumn(column);
-
-        String year = readString("Installation year: ");
-        if (section.trim().length() > 0) {
-
-            panel.setYear(readInt(year));
-        }
-
-        Material material = readMaterial();
-
-        boolean isTracking = readBoolean("Tracked: ");
-        panel.setTracking(isTracking);
-
-        return panel;
-    }
-
     public String readSection() {
         String userSelection = readRequiredString("Which section would you like to view?");
         return userSelection;

@@ -37,8 +37,8 @@ public class PanelService {
     public PanelResult update(Panel panel) throws DataException {
         PanelResult result = validate(panel);
 
-        if (panel.getPanelId() <= 0) {
-            result.addMessages("Solar panel 'id' is required.");
+        if (panel.getPanelId() < 0) {
+            result.addMessages("Solar panel 'id' is required and cannot be negative.");
         }
         if (result.isSuccess()) {
             if (repository.update(panel)) {

@@ -56,19 +56,19 @@ public class Controller {
     }
 
     private void addPanel() throws DataException {
-        view.printHeader("Add a Panel");
+        view.printHeader("Add Panel");
         Panel newPanel = view.makePanel();
         PanelResult result = service.add(newPanel);
         view.printResult(result);
     }
 
     private void updatePanel() throws DataException {
+        view.printHeader("Update Panel");
+        String userChoice = view.readSection();
+        List<Panel> panels = service.findBySection(userChoice);
+        Panel panel = view.choosePanel(panels);
     }
 
     private void deletePanel() throws DataException {
-        view.printHeader("Delete a Panel");
-        List<Panel> panels = service.findBySection("Which section would you like to view?");
-
-
     }
 }
