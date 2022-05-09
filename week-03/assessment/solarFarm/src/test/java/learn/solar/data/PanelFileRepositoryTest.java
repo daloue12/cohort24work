@@ -51,6 +51,9 @@ class PanelFileRepositoryTest {
         assertEquals(2, actual.getColumn());
         assertEquals(Material.AMORPHOUS_SILICON, actual.getMaterial());
         assertFalse(actual.isTracking());
+
+        List<Panel> all = repository.findAll();
+        assertEquals(2, all.size());
     }
 
     @Test

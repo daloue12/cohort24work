@@ -74,8 +74,13 @@ public class Controller {
     }
 
     private void deletePanel() throws DataException {
-        view.printHeader("Delete Panel");
-
-
+        view.printHeader("View Panels by Section & Delete");
+        String userChoice = view.readSection();
+        List<Panel> panels = service.findBySection(userChoice);
+        view.printPanels(userChoice, panels);
+        Panel panel = view.choosePanel(panels);
+        int panelToDelete = panel.getPanelId();
+        PanelResult result = service.deleteById(panelToDelete);
+        view.printResult(result);
     }
 }

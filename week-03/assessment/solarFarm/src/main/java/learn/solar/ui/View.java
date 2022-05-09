@@ -29,6 +29,7 @@ public class View {
 
     public void printResult(PanelResult result) {
         if (result.isSuccess()) {
+            System.out.println();
             System.out.println("Operation Successful.");
         } else {
             printHeader("Errors");
@@ -62,7 +63,7 @@ public class View {
         System.out.println("Select a Panel To Update:");
         Panel result = null;
         if (panels.size() > 0) {
-            int panelId = readInt("Select a Panel ID");
+            int panelId = readInt("Select a Panel ID: ");
             for (Panel panel : panels) {
                 if (panel.getPanelId() == panelId) {
                     return panel;
