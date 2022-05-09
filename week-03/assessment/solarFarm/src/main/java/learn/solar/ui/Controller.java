@@ -74,5 +74,8 @@ public class Controller {
     }
 
     private void deletePanel() throws DataException {
+        view.printHeader("Delete Panel");
+
+
     }
 }

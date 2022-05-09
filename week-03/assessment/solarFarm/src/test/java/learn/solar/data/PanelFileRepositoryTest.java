@@ -1,5 +1,6 @@
 package learn.solar.data;
 
+import learn.solar.models.Material;
 import learn.solar.models.Panel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,13 +31,26 @@ class PanelFileRepositoryTest {
 
     @Test
     void findBySection() throws DataException {
-        List<Panel> actual = repository.findBySection("Upper Hill");
-        assertNotNull(actual);
+        List<Panel> actual = repository.findBySection("middle");
         assertEquals(1, actual.size());
+        assertNotNull(actual);
     }
 
     @Test
-    void add() {
+    void add() throws DataException {
+        Panel panel = new Panel();
+        panel.setSection("upper");
+        panel.setRow(1);
+        panel.setColumn(2);
+        panel.setMaterial(Material.AMORPHOUS_SILICON);
+        panel.setTracking(false);
+
+        Panel actual = repository.add(panel);
+        assertEquals("upper", actual.getSection());
+        assertEquals(1, actual.getRow());
+        assertEquals(2, actual.getColumn());
+        assertEquals(Material.AMORPHOUS_SILICON, actual.getMaterial());
+        assertFalse(actual.isTracking());
     }
 
     @Test
