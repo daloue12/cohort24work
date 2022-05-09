@@ -63,10 +63,12 @@ public class Controller {
     }
 
     private void updatePanel() throws DataException {
-        view.printHeader("Update Panel");
+        view.printHeader("View Panels by Section & Update");
         String userChoice = view.readSection();
         List<Panel> panels = service.findBySection(userChoice);
-        Panel panel = view.choosePanel(panels);
+        view.printPanels(userChoice, panels);
+        view.choosePanel(panels);
+
     }
 
     private void deletePanel() throws DataException {

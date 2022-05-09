@@ -30,7 +30,7 @@ public class PanelService {
         }
         panel = repository.add(panel);
         result.setPanel(panel);
-        System.out.println("Panel has been successfully added");
+        System.out.println("Panel Added.");
         return result;
     }
 

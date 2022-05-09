@@ -33,7 +33,7 @@ public class View {
         } else {
             printHeader("Errors");
             for (String msg : result.getMessages()) {
-                System.out.printf("- %s%n", msg);
+                System.out.printf("%s%n", msg);
                 System.out.println("Could not perform operation. Please try again.");
             }
         }
@@ -59,6 +59,7 @@ public class View {
     }
 
     public Panel choosePanel(List<Panel> panels) {
+        System.out.println("Select a Panel To Update:");
         Panel result = null;
         if (panels.size() > 0) {
             int panelId = readInt("Select a Panel ID");
