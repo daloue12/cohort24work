@@ -1,4 +1,14 @@
 package learn.solar.data;
 
-public class DataException {
+import java.io.IOException;
+
+public class DataException extends IOException {
+
+    public DataException(String message) {
+        super(message);
+    }
+
+    public DataException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }
