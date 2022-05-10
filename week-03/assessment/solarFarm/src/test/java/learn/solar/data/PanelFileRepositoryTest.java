@@ -32,12 +32,12 @@ class PanelFileRepositoryTest {
     @Test
     void findBySection() throws DataException {
         List<Panel> actual = repository.findBySection("middle");
-        assertEquals(1, actual.size());
+        assertEquals(2, actual.size());
         assertNotNull(actual);
     }
 
     @Test
-    void add() throws DataException {
+    void shouldAddANewPanel() throws DataException {
         Panel panel = new Panel();
         panel.setSection("upper");
         panel.setRow(1);
@@ -53,18 +53,29 @@ class PanelFileRepositoryTest {
         assertFalse(actual.isTracking());
 
         List<Panel> all = repository.findAll();
-        assertEquals(2, all.size());
+        assertEquals(3, all.size());
     }
 
     @Test
-    void update() {
+    void update() throws DataException {
+       Panel doesNotExist = new Panel();
+       doesNotExist.setPanelId(1234);
+       assertFalse(repository.update(doesNotExist));
     }
 
     @Test
-    void deleteById() {
+    void shouldDeletePanelAndLowerTotalCountByOne() throws DataException {
+        int count = repository.findAll().size();
+        assertTrue(repository.findAll().size() == 2);
+        repository.deleteById(1);
+        assertTrue(repository.findAll().size() == 1);
+
     }
 
     @Test
-    void findAll() {
+    void shouldFindAllPanelsAndCorrectTotal() throws DataException {
+        List<Panel> allPanels = repository.findAll();
+        assertEquals(2, allPanels.size());
+        assertNotEquals(1, allPanels.size());
     }
 }
