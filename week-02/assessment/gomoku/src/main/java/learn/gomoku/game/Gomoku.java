@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Gomoku {
 
-    public static final int WIDTH = 15;
+    public static final int WIDTH = 20;
 
     private final Player playerOne;
     private final Player playerTwo;

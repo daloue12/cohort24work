@@ -13,9 +13,7 @@ class Exercise01Test {
     Exercise01 instance = new Exercise01();
 
     @Test
-    void getToday() {
-        assertEquals(LocalDate.now(), instance.getToday());
-    }
+    void getToday() {assertEquals(LocalDate.now(), instance.getToday());}
 
     @Test
     void getFirstFlightDate() {
