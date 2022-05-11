@@ -50,8 +50,10 @@ class PanelServiceTest {
 
     @Test
     void shouldNotDeleteNonexistentPanel() throws DataException {
-        PanelResult result = service.deleteById(100);
-        assertFalse(result.isSuccess());
+        PanelResult result = service.deleteById(1000);
+        assertFalse(!result.isSuccess());
+        PanelResult secondResult = service.deleteById(-1);
+        assertFalse(!secondResult.isSuccess());
     }
     @Test
     void shouldDeleteExistingPanel() throws DataException {
@@ -64,6 +66,9 @@ class PanelServiceTest {
         Panel invalidPanel =  new Panel(10, "bottom", 1, 10, 2023, Material.AMORPHOUS_SILICON, false);
         PanelResult result = service.validate(invalidPanel);
         assertFalse(result.isSuccess());
+        Panel secondInvalidPanel = new Panel(100, "top", 10, 251, 2000, Material.AMORPHOUS_SILICON, true);
+        PanelResult secondResult = service.validate(secondInvalidPanel);
+        assertFalse(secondResult.isSuccess());
     }
 
     @Test
