@@ -48,7 +48,7 @@ class NonOverlappingMicroLeaseScheduleTest {
 
         assertFalse(schedule.add(new MicroLease(
                 LocalDateTime.of(2021, 1, 7, 0, 0),
-                LocalDateTime.of(2022, 1, 14, 0, 0))));
+                LocalDateTime.of(2021, 1, 14, 0, 0))));
     }
 
     @Test

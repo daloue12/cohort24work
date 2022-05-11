@@ -1,4 +1,5 @@
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +19,12 @@ public class Exercise02 {
 
     // 2. return 4PM (tea time!) as a LocalTime.
     LocalTime getTeaTime() {
-
         return LocalTime.of(16, 0);
     }
 
     // 3. add 12 hours to the time parameter and return the value
     LocalTime add12Hours(LocalTime time) {
-
-        return time.plusHours(12);
+        return null;
     }
 
     // 4. given a time parameter, return a list of the next 4
@@ -42,16 +41,17 @@ public class Exercise02 {
     // time == 04:30:00
     // appointments == 04:30, 04:45, 05:00, 05:15
     List<LocalTime> getQuarterHourAppointments(LocalTime time) {
-        List<LocalTime> result = new ArrayList<>();
-
-        time.plus(Duration.ofMinutes(15));
-        result.add(time);
-        time.plus(Duration.ofMinutes(30));
-        result.add(time);
-        time.plus(Duration.ofMinutes(45));
-        result.add(time);
-        time.plus(Duration.ofMinutes(45));
-        result.add(time);
-        return result;
+        List<LocalTime> appointments = new ArrayList<>();
+        LocalTime startTime = LocalTime.of(time.getHour(), time.getMinute());
+        while (true) {
+            if (startTime.getMinute() % 15 > 0) {
+                startTime = startTime.plusMinutes(1);
+            }
+            appointments.add(startTime);
+            appointments.add(startTime.plusMinutes(15));
+            appointments.add(startTime.plusMinutes(30));
+            appointments.add(startTime.plusMinutes(45));
+            return appointments;
+        }
     }
 }

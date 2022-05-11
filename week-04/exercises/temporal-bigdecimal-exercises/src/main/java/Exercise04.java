@@ -9,7 +9,8 @@ public class Exercise04 {
 
     // 1. add a, b, and c together and return the result
     BigDecimal add(BigDecimal a, BigDecimal b, BigDecimal c) {
-        return null;
+        BigDecimal combined = a.add(b).add(c);
+        return combined;
     }
 
     // 2. divide a by b and return the result with only two decimal points
