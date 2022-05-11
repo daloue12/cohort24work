@@ -5,13 +5,10 @@ import learn.solar.data.PanelRepository;
 import learn.solar.models.Material;
 import learn.solar.models.Panel;
 import org.junit.jupiter.api.Test;
-
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 public class PanelRepositoryDouble implements PanelRepository {
 
     private List<Panel> panels = new ArrayList<>();

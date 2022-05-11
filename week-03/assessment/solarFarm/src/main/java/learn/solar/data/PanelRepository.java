@@ -1,7 +1,6 @@
 package learn.solar.data;
 
 import learn.solar.models.Panel;
-
 import java.util.List;
 
 public interface PanelRepository {

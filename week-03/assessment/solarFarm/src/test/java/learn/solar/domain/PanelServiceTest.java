@@ -7,11 +7,8 @@ import learn.solar.models.Material;
 import learn.solar.models.Panel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 class PanelServiceTest {
        private PanelRepository repository = new PanelRepositoryDouble();
         PanelService service = new PanelService(repository);

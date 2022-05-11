@@ -4,8 +4,6 @@ import learn.solar.data.DataException;
 import learn.solar.domain.PanelResult;
 import learn.solar.domain.PanelService;
 import learn.solar.models.Panel;
-
-import javax.xml.crypto.Data;
 import java.util.List;
 
 public class Controller {

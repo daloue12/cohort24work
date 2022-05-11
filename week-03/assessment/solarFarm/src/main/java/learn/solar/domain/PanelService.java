@@ -3,10 +3,7 @@ package learn.solar.domain;
 import learn.solar.data.DataException;
 import learn.solar.data.PanelRepository;
 import learn.solar.models.Panel;
-
-import javax.xml.crypto.Data;
 import java.util.List;
-
 public class PanelService {
 
     private final PanelRepository repository;

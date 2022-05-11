@@ -2,7 +2,6 @@ package learn.solar.data;
 
 import learn.solar.models.Material;
 import learn.solar.models.Panel;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;

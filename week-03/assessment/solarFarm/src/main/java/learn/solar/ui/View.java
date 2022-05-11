@@ -3,7 +3,6 @@ package learn.solar.ui;
 import learn.solar.domain.PanelResult;
 import learn.solar.models.Material;
 import learn.solar.models.Panel;
-
 import java.util.List;
 import java.util.Scanner;
 
