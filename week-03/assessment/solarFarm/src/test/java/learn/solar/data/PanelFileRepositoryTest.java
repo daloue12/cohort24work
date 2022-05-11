@@ -30,7 +30,7 @@ class PanelFileRepositoryTest {
     }
 
     @Test
-    void findBySection() throws DataException {
+    void shouldFindBySection() throws DataException {
         List<Panel> actual = repository.findBySection("middle");
         assertEquals(2, actual.size());
         assertNotNull(actual);
@@ -57,7 +57,7 @@ class PanelFileRepositoryTest {
     }
 
     @Test
-    void update() throws DataException {
+    void shouldUpdate() throws DataException {
        Panel doesNotExist = new Panel();
        doesNotExist.setPanelId(1234);
        assertFalse(repository.update(doesNotExist));
