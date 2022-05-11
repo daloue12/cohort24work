@@ -1,5 +1,8 @@
 import java.math.BigDecimal;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Exercise05 {
 
@@ -12,7 +15,30 @@ public class Exercise05 {
     // Payments start on the first Friday of the year.
     // Given a date, calculate payments expected from that date until the end of the year.
     BigDecimal calculateGiftsTilEndOfYear(LocalDate date) {
-        return null;
+        //Define the Fridays for a provided year
+        int year = date.getYear();
+        List<LocalDate> everyOtherFriday = new ArrayList<>();
+        LocalDate startDate = LocalDate.of(year, 1, 1);
+        LocalDate endDate = LocalDate.of(year, 12, 31);
+
+        while (startDate.compareTo(endDate) <= 0) {
+            if (everyOtherFriday.size() == 0) {
+                if (startDate.getDayOfWeek() == DayOfWeek.FRIDAY) {
+                    everyOtherFriday.add(startDate);
+                    startDate = startDate.plusWeeks(2);
+                } else {
+                    startDate = startDate.plusDays(1);
+                }
+            }
+        }
+
+        BigDecimal result = BigDecimal.ZERO;
+        for (LocalDate friday : everyOtherFriday) {
+            if(friday.compareTo(date) >= 0) {
+                result = result.add(BigDecimal.TEN);
+            }
+        }
+        return result;
     }
 
     // 2. Your Godmother is getting quirky. She adjusted her payment schedule.

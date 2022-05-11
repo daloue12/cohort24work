@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Exercise04 {
 
@@ -15,7 +16,8 @@ public class Exercise04 {
 
     // 2. divide a by b and return the result with only two decimal points
     BigDecimal divideWithTwoDecimalPlaces(BigDecimal a, BigDecimal b) {
-        return null;
+        BigDecimal divided = a.divide(b,2, RoundingMode.HALF_UP);
+        return divided;
     }
 
     // 3. calculate the sum of elements in values
@@ -26,7 +28,8 @@ public class Exercise04 {
 
     // 4. calculate the average of elements in values
     BigDecimal average(BigDecimal[] values) {
-        return null;
+        BigDecimal average = sum(values).divide(new BigDecimal(values.length), 4, RoundingMode.HALF_UP);
+        return average;
     }
 
     /**
@@ -41,6 +44,14 @@ public class Exercise04 {
      * @return total interest earned (final balance - initial investment)
      */
     BigDecimal calculateInterest(BigDecimal investment, BigDecimal interestRate, int periods) {
-        return null;
+        BigDecimal result = new BigDecimal(investment.toString());
+
+        for (int i = 0; i < periods; i ++) {
+            BigDecimal interest = result.multiply(interestRate);
+            result = result.add(interest);
+        }
+        BigDecimal balance = result.subtract(investment);
+
+        return balance;
     }
 }
