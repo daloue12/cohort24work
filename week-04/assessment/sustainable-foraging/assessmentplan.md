@@ -45,12 +45,15 @@ All new features must be thoroughly tested. You are not responsible for creating
 ### Specific To-Dos:
 #### Debugging & Verification of Existing Features:
 
-1. Test functionality to 'Add an Item'
-2. Test functionality to 'View Items'
-3. Test functionality to 'View Foragers'
-4. Test functionalaity to 'Add a Forage'
-5. Test functionality to 'View Forages by Date'
-* Begin by runnning the application at it's current state, going through each feature/functionality, and identify the missing components/bugs and make note of them (already noticed that you can add the same forage for different foragers for the same item). There is also no 'View Forages' feature currently.
+1. Test functionality to 'Exit'
+2. Test functionality to 'View Forages By Date'
+3. Test functionality to 'View Items'
+4. Test functionality to 'Add a Forage'
+5. Test functionality to 'Add a Forager'
+6. Test functionality to 'Add an Item'
+7. Test functionality to 'Report: Kilograms of Item'
+8. Test functionality to 'Report: Item Category Value'
+* Begin by running the application in its current state, going through each feature/functionality, and identify the missing components/bugs and make note of them (already noticed that you can add the same forage for different foragers for the same item). There is also no 'View Forages' feature currently.
 ****
 #### Implement functionality to 'Add a Forager':
 1. Create new addForager() method (be sure to generate tests immediately upon creation of this method). This should add Forager to list of Foragers and also write the Forage to the data file.
