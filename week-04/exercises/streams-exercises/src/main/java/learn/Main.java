@@ -185,10 +185,11 @@ public class Main {
 
             for (Map.Entry entry: IqPerMajor.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList())) {
                 System.out.printf("%s: Average: %s%n", entry.getKey(),
-                        entry.getValue());*/
+                        entry.getValue());}*/
 
             // 23. STRETCH GOAL!
             // Who has the highest pointPercent in "Sacred Writing"?
-        }
+
+
     }
 }
