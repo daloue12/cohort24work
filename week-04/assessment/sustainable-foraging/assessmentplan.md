@@ -53,7 +53,7 @@ All new features must be thoroughly tested. You are not responsible for creating
 6. Test functionality to 'Add an Item'
 7. Test functionality to 'Report: Kilograms of Item'
 8. Test functionality to 'Report: Item Category Value'
-* Begin by running the application in its current state, going through each feature/functionality, and identify the missing components/bugs and make note of them (already noticed that you can add the same forage for different foragers for the same item). There is also no 'View Forages' feature currently.
+* Begin by running the application in its current state, going through each feature/functionality, and identify the missing components/bugs and make note of them (already noticed that you can add a duplicate forager). There is also no 'View Forages' feature currently.
 ****
 #### Implement functionality to 'Add a Forager':
 1. Create new addForager() method (be sure to generate tests immediately upon creation of this method). This should add Forager to list of Foragers and also write the Forage to the data file.
