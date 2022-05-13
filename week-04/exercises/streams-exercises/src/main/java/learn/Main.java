@@ -1,7 +1,11 @@
 package learn;
 
 import java.io.IOException;
+import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -12,12 +16,12 @@ public class Main {
 
         // 0. Print all students
         // iteration solution
-        for (Student student : students) {
+        /*for (Student student : students) {
             System.out.println(student);
-        }
+        }*/
 
         // stream solution
-        students.stream().forEach(System.out::println);
+        /*students.stream().forEach(System.out::println);*/
 
         // 1. Print students from Argentina
         /*Stream<Student> allStudents = ds.all().stream();
@@ -143,14 +147,48 @@ public class Main {
 
         // 19. Create a new type, StudentSummary with fields for Country, Major, and IQ.
         //     Map Students to StudentSummary, then sort and limit by IQ (your choice of low or high).
+        /*List<StudentSummary> studentSummaries= students.stream()
+                .map(student -> new StudentSummary(student.getCountry(), student.getMajor(), student.getIq()))
+                .filter(studentSummary -> studentSummary.getIq() > 75)
+                .sorted(Comparator.comparing(StudentSummary::getCountry))
+                .collect(Collectors.toList());
+
+        studentSummaries.forEach(System.out::println);*/
 
         // 20. What is the average GPA per country (remember, it's random fictional data).
+        /*Map<String, DoubleSummaryStatistics> gpaPerCountry = students.stream()
+                .collect(Collectors.groupingBy(
+                        Student::getCountry,
+                        Collectors.summarizingDouble(student -> student.getGpa().doubleValue())));
+
+        for (Map.Entry<String, DoubleSummaryStatistics> entry: gpaPerCountry.entrySet()) {
+            DoubleSummaryStatistics doubleSummaryStatistics = entry.getValue();
+            System.out.printf("%s: Average: %s%n", entry.getKey(),
+                    doubleSummaryStatistics.getAverage());*/
 
         // 21. What is the maximum GPA per country?
+        /*Map<String, DoubleSummaryStatistics> gpaPerCountry = students.stream()
+                .collect(Collectors.groupingBy(
+                        Student::getCountry,
+                        Collectors.summarizingDouble(student -> student.getGpa().doubleValue())));
 
-        // 22. Print average IQ per Major ordered by IQ ascending.
+        for (Map.Entry<String, DoubleSummaryStatistics> entry : gpaPerCountry.entrySet()) {
+            DoubleSummaryStatistics doubleSummaryStatistics = entry.getValue();
+            System.out.printf("%s: Max: %s%n", entry.getKey(),
+                    doubleSummaryStatistics.getMax());*/
 
-        // 23. STRETCH GOAL!
-        // Who has the highest pointPercent in "Sacred Writing"?
+            // 22. Print average IQ per Major ordered by IQ ascending.
+            /*Map<String, Double> IqPerMajor = students.stream()
+                    .collect(Collectors.groupingBy(
+                            Student::getMajor,
+                            Collectors.averagingDouble(Student::getIq)));
+
+            for (Map.Entry entry: IqPerMajor.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toList())) {
+                System.out.printf("%s: Average: %s%n", entry.getKey(),
+                        entry.getValue());*/
+
+            // 23. STRETCH GOAL!
+            // Who has the highest pointPercent in "Sacred Writing"?
+        }
     }
 }
