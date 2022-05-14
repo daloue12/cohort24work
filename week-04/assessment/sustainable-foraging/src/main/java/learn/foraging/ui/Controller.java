@@ -10,8 +10,11 @@ import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Controller {
 
@@ -58,12 +61,10 @@ public class Controller {
                     addItem();
                     break;
                 case REPORT_KG_PER_ITEM:
-                    view.displayStatus(false, "NOT IMPLEMENTED");
-                    view.enterToContinue();
+                    reportKgPerItem();
                     break;
                 case REPORT_CATEGORY_VALUE:
-                    view.displayStatus(false, "NOT IMPLEMENTED");
-                    view.enterToContinue();
+                    reportCategoryValue();
                     break;
                 case GENERATE:
                     generate();
@@ -130,6 +131,26 @@ public class Controller {
             String successMessage = String.format("Item %s created.", result.getPayload().getId());
             view.displayStatus(true, successMessage);
         }
+    }
+
+    public void reportKgPerItem() {
+        LocalDate date = view.getForageDate();
+        List<Forage> forages = forageService.findByDate(date);
+        Map<Item, Double> itemWeights = forages.stream()
+                .collect(Collectors.groupingBy(Forage::getItem, Collectors.summingDouble(Forage::getKilograms)));
+        view.displayItemWeights(itemWeights);
+
+    }
+
+    public void reportCategoryValue() {
+        LocalDate date = view.getForageDate();
+        List<Forage> forages = forageService.findByDate(date);
+        Map<Category, Double> categoryValues = forages.stream()
+                .collect(Collectors.groupingBy(forage -> forage.getItem().getCategory(),
+                        Collectors.summingDouble(forage -> new BigDecimal(forage.getKilograms())
+                                .multiply(forage.getItem().getDollarPerKilogram()).doubleValue())));
+        view.displayCategoryValues(categoryValues);
+        //TODO The logic for this functionality is setup correctly, but noticing that printed report shows more than two decimal places. Update?
     }
 
     private void generate() throws DataException {
