@@ -133,7 +133,7 @@ public class Controller {
         }
     }
 
-    public void reportKgPerItem() {
+    private void reportKgPerItem() {
         LocalDate date = view.getForageDate();
         List<Forage> forages = forageService.findByDate(date);
         Map<Item, Double> itemWeights = forages.stream()
@@ -142,7 +142,7 @@ public class Controller {
 
     }
 
-    public void reportCategoryValue() {
+    private void reportCategoryValue() {
         LocalDate date = view.getForageDate();
         List<Forage> forages = forageService.findByDate(date);
         Map<Category, Double> categoryValues = forages.stream()

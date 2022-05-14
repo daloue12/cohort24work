@@ -21,7 +21,7 @@
 * The combination of Date, Item, and Forager cannot be duplicated. (Cannot forage the same item on the same day. It should be tracked as one Forage.)
 * Forage ID is a system-generated GUID (globally unique identifier).
 ## Technical Requirements
-In addition to application features, please add Spring dependency injection to the project. You may configure Spring DI with either XML or annotations.
+In addition to application features, please add Spring dependency injection to the project. You may configure Spring DI with either XML or annotations. Recommend using annotations since the remainder of the course focuses on this over XML.
 
 Generate the kilogram/item report with streams and total value/category report with loops and intermediate variables, but keep the ultimate goal in mind: using data to create accurate reports. If one approach gives you too much trouble, use the other to solve the data problem.
 
@@ -53,11 +53,17 @@ All new features must be thoroughly tested. You are not responsible for creating
 6. Test functionality to 'Add an Item'
 7. Test functionality to 'Report: Kilograms of Item'
 8. Test functionality to 'Report: Item Category Value'
-* Begin by running the application in its current state, going through each feature/functionality, and identify the missing components/bugs and make note of them (already noticed that you can add a duplicate forager). Also noticed that both 'Report' functionalities are not working. 
+* Begin by running the application in its current state, going through each feature/functionality, and identify the missing components/bugs and make note of them. Aside from what has already been given to us in terms of functionalities that are not currently working (addForager and both reporting functionalities), I am also noticing
+that there is no validation to ensure that 'poisonous' and 'inedible' item types cannot be assigned anything other than a $0 value. This needs to be addressed with another else/if statement in the ItemService class.
 ****
 #### Implement functionality to 'Add a Forager':
-1. Create new addForager() method (be sure to generate tests immediately upon creation of this method). This should add Forager to list of Foragers and also write the Forage to the data file.
+1. Create new addForager() method (be sure to generate tests immediately upon creation of this method). This should add Forager to list of Foragers and also write the Forager to the data file.
 ****
-#### Generate a report for Kilograms for every titem for a given day:
-1. User prompted date to generate a report for. Will utilize BigDecimal in operation of multiplying number of kilos for a specific item by the dollars/kilo field.
+#### Generate a report for Kilograms for every item for a given day:
+1. User prompted date to generate a report. Will utilize BigDecimal in operation of multiplying number of kilos for a specific item by the dollars/kilo field.
 2. Need to figure out how to test utilizing the ForageFileRepository.
+#### Generate a report for total value/category for a given day:
+1. User prompted message to view forages by date using the getForageDate() method that has already been given to us in the View class.
+2. Create a Map<> to instantiate 'categoryValues' which will initialize a stream of forages.
+3. Will call upon the necessary methods to eventually print the categories and the dollar value for each category. A new method to do this will
+have to be created in the view class.
