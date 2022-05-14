@@ -1,5 +1,7 @@
 package learn.foraging.ui;
 
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@Component
 public class ConsoleIO {
     private static final String INVALID_NUMBER
             = "[INVALID] Enter a valid number.";

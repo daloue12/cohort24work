@@ -1,7 +1,6 @@
 package learn.foraging.data;
 
 import learn.foraging.models.Item;
-
 import java.util.List;
 
 public interface ItemRepository {

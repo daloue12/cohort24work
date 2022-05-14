@@ -7,7 +7,7 @@ import learn.foraging.data.ItemRepository;
 import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
-
+import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+@Service
 public class ForageService {
 
     private final ForageRepository forageRepository;
@@ -132,7 +133,14 @@ public class ForageService {
         if (forage.getKilograms() <= 0 || forage.getKilograms() > 250.0) {
             result.addErrorMessage("Kilograms must be a positive number less than 250.0");
         }
-        //TODO need to modify this method to ensure that a duplicate forage isn't created and that instead it add to existing
+
+        List<Forage> allForages = forageRepository.findByDate(forage.getDate());
+        for (Forage comparisonForage : allForages) {
+            if (comparisonForage.getItem().getId() == forage.getItem().getId() &&
+                    comparisonForage.getForager().getId().equalsIgnoreCase(forage.getForager().getId())) {
+                result.addErrorMessage("Error. Item was already foraged by that forager on that date.");
+            }
+        }
     }
 
     private void validateChildrenExist(Forage forage, Result<Forage> result) {

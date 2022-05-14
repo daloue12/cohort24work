@@ -9,20 +9,21 @@ import learn.foraging.models.Category;
 import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Component
 public class Controller {
-
     private final ForagerService foragerService;
     private final ForageService forageService;
     private final ItemService itemService;
     private final View view;
-
+    @Autowired
     public Controller(ForagerService foragerService, ForageService forageService, ItemService itemService, View view) {
         this.foragerService = foragerService;
         this.forageService = forageService;
