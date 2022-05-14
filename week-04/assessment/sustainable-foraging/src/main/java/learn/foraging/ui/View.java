@@ -219,7 +219,7 @@ public class View {
             io.println("There are no categories.");
         }
         io.println("----------------------");
-        io.println("Cateogry | Total Value");
+        io.println("Category | Total Value");
         io.println("----------------------");
         categoryValues.forEach((category, totalValue) -> io.printf("%s | $%s%n", category.name(), totalValue));
     }

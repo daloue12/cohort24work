@@ -39,7 +39,8 @@ public class ForagerService {
         Result<Forager> result = validateAllPossibleNullEntries(forager);
         if (!result.isSuccess()) {
             return result;
-        } //TODO while this ensures that a valid forager is created, it does not ensure that a duplicate isn't created which still needs to be addressed.
+        }
+        validateNotDuplicate(forager, result);
         return result;
     }
 
@@ -60,4 +61,15 @@ public class ForagerService {
         return result;
     }
 
+    private Result<Forager> validateNotDuplicate(Forager forager, Result<Forager> result) {
+        List<Forager> allForagers = repository.findAll();
+        for (Forager comparisonForager : allForagers) {
+            if (comparisonForager.getFirstName().replaceAll(" ", "").equalsIgnoreCase(forager.getFirstName().replaceAll(" ", ""))
+                    && comparisonForager.getLastName().replaceAll(" ", "").equalsIgnoreCase(forager.getLastName().replaceAll(" ", ""))
+                    && comparisonForager.getState().replaceAll(" ", "").equalsIgnoreCase(forager.getState().replaceAll(" ", ""))) {
+                result.addErrorMessage("A forager with this first name, last name, and state already exists.");
+            }
+        }
+        return result;
+    }
 }

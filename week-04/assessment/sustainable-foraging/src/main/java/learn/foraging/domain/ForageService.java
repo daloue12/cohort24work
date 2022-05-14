@@ -132,6 +132,7 @@ public class ForageService {
         if (forage.getKilograms() <= 0 || forage.getKilograms() > 250.0) {
             result.addErrorMessage("Kilograms must be a positive number less than 250.0");
         }
+        //TODO need to modify this method to ensure that a duplicate forage isn't created and that instead it add to existing
     }
 
     private void validateChildrenExist(Forage forage, Result<Forage> result) {
