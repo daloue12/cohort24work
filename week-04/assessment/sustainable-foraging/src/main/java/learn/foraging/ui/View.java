@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class View {
 
-    private final ConsoleIO io;
+    public final ConsoleIO io;
 
     public View(ConsoleIO io) {
         this.io = io;
@@ -117,6 +117,15 @@ public class View {
         item.setName(io.readRequiredString("Item Name: "));
         item.setDollarPerKilogram(io.readBigDecimal("$/Kg: ", BigDecimal.ZERO, new BigDecimal("7500.00")));
         return item;
+    }
+
+    public Forager makeForager() {
+        displayHeader(MainMenuOption.ADD_FORAGER.getMessage());
+        Forager forager = new Forager();
+        forager.setFirstName(io.readRequiredString("Enter First Name: "));
+        forager.setLastName(io.readRequiredString("Enter Last Name: "));
+        forager.setState(io.readRequiredString("Enter State: "));
+        return forager;
     }
 
     public GenerateRequest getGenerateRequest() {
