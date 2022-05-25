@@ -91,20 +91,22 @@ select item_id, name, price_per_unit from item where unit_id = 2 and price_per_u
 -- Decide if the customer Mina Ellett has a login record.
 -- Step 1: select the customer_id from customer for Mina Ellett.
 -- Expected: 1 Row
-
+select customer_id from customer where first_name = 'Mina' and last_name = 'Ellett';
 -- Step 2: use the customer_id to find a record in the login table.
 -- Expected: 0 Rows (no login)
-
+select customer_id from login where customer_id = '518';
 
 -- Which employees work on projects for customer Tadeo Divine?
 -- Step 1: find Tadeo Divine's customer_id
 -- Expected: 1 Row
-
+select customer_id from customer where first_name = 'Tadeo' and last_name = 'Divine';
+-- 854 is the customer_id
 -- Step 2: use their customer_id to find their records in the project table.
 -- Expected: 1 Row
-
+select * from project where customer_id = '854';
 -- Step 3: use the project_id from project to find records in project_employee
 -- Expected: 4 Rows
-
+select * from project_employee where project_id = '182';
 -- Step 4: use the employee_ids from project_employee to find records in employee
 -- Expected: 4 Rows
+select * from employee where employee_id = '9' or employee_id = '15' or employee_id = '22' or employee_id = '23';
