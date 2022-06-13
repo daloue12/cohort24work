@@ -1,6 +1,8 @@
 package learn.foraging.data;
 
 import learn.foraging.models.Forage;
+import learn.foraging.models.Forager;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

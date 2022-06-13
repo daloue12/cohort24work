@@ -3,12 +3,15 @@ package learn.foraging.domain;
 import learn.foraging.data.DataException;
 import learn.foraging.data.ItemRepository;
 import learn.foraging.models.Category;
+import learn.foraging.models.Forage;
 import learn.foraging.models.Item;
-
+import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+@Service
 public class ItemService {
 
     private final ItemRepository repository;
@@ -43,6 +46,8 @@ public class ItemService {
         } else if (item.getDollarPerKilogram().compareTo(BigDecimal.ZERO) < 0
                 || item.getDollarPerKilogram().compareTo(new BigDecimal("7500.00")) > 0) {
             result.addErrorMessage("%/Kg must be between 0.00 and 7500.00.");
+        } else if (item.getCategory() == Category.INEDIBLE || item.getCategory() == Category.POISONOUS && item.getDollarPerKilogram().compareTo(BigDecimal.ZERO) != 0) {
+            result.addErrorMessage("'Inedible' & 'Poisonous' items cannot have any value other than $0/kg. You cannot sell these items.");
         }
 
         if (!result.isSuccess()) {

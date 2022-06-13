@@ -4,15 +4,17 @@ import learn.foraging.models.Category;
 import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
-
+import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+@Component
 public class View {
 
-    private final ConsoleIO io;
+    public final ConsoleIO io;
 
     public View(ConsoleIO io) {
         this.io = io;
@@ -119,6 +121,15 @@ public class View {
         return item;
     }
 
+    public Forager makeForager() {
+        displayHeader(MainMenuOption.ADD_FORAGER.getMessage());
+        Forager forager = new Forager();
+        forager.setFirstName(io.readRequiredString("Enter First Name: "));
+        forager.setLastName(io.readRequiredString("Enter Last Name: "));
+        forager.setState(io.readRequiredString("Enter State: "));
+        return forager;
+    }
+
     public GenerateRequest getGenerateRequest() {
         displayHeader(MainMenuOption.GENERATE.getMessage());
         LocalDate start = io.readLocalDate("Select a start date [MM/dd/yyyy]: ");
@@ -192,5 +203,25 @@ public class View {
         for (Item item : items) {
             io.printf("%s: %s, %s, %.2f $/kg%n", item.getId(), item.getName(), item.getCategory(), item.getDollarPerKilogram());
         }
+    }
+
+    public void displayItemWeights (Map<Item, Double> itemWeights) {
+        if (itemWeights == null || itemWeights.isEmpty()) {
+            io.println("There are no items.");
+        }
+        io.println("-------------------------------------");
+        io.println("Item ID | Item Name | Item Weight(kg)");
+        io.println("-------------------------------------");
+        itemWeights.forEach((item, itemWeight) -> io.printf("%s | %s | %s%n", item.getId(), item.getName(), itemWeight));
+    }
+
+    public void displayCategoryValues (Map<Category, Double> categoryValues) {
+        if (categoryValues == null || categoryValues.isEmpty()) {
+            io.println("There are no categories.");
+        }
+        io.println("----------------------");
+        io.println("Category | Total Value");
+        io.println("----------------------");
+        categoryValues.forEach((category, totalValue) -> io.printf("%s | $%s%n", category.name(), totalValue));
     }
 }

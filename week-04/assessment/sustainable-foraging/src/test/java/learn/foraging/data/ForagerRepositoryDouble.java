@@ -1,6 +1,8 @@
 package learn.foraging.data;
 
+import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +36,11 @@ public class ForagerRepositoryDouble implements ForagerRepository {
         return foragers.stream()
                 .filter(i -> i.getState().equalsIgnoreCase(stateAbbr))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Forager add(Forager forager) throws DataException {
+        return forager;
     }
 
     private static Forager makeForager() {
